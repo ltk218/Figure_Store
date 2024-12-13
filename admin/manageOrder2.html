@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Đơn Hàng</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet"></head>
+    <link href="../css/style-admin.css" rel="stylesheet"></head>
+    <body>
+        <!-- Top bar Start -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <i class="fa fa-envelope"></i> inoriyuzuriha1808@gmail.com
+                    </div>
+                    <div class="col-sm-6">
+                        <i class="fa fa-phone-alt"></i> 0388919451
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Top bar End -->
+    
+
+    <!-- Nav Bar Start -->
+    <div class="nav">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="../index.html" class="nav-item nav-link active">Home</a>
+                        <a href="../product-list.html" class="nav-item nav-link">Sản Phẩm</a>
+                    </div>
+                    <div class="navbar-nav ml-auto">
+                        <span class="nav-item nav-link admin-display">
+                            <i class="fa fa-user"></i> Admin
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>    
+    <!-- Nav Bar End -->
+
+    
+        <!-- Bottom Bar Start -->
+        <div class="bottom-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <div class="logo">
+                            <a href="admin.html">
+                                <img src="../img/ry.webp" alt="Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="title text-center">
+                            <h1 class="text-center">Trang Quản Lý (Admin)</h1>
+                            <a href="manage-products.html" class="btn btn-link">Quản lý sản phẩm</a>
+                            <a href="manage-users.html" class="btn btn-link">Quản lý người dùng</a>
+                            <a href="manageCustomer.html" class="btn btn-link">Quản lý khách hàng</a>
+                            <a href="manageOrder.html" class="btn btn-link">Quản lý đơn hàng</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- Bottom Bar End -->   
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Quản Lý Đơn Hàng</h1>
+
+        <!-- Phần tùy chọn -->
+        <section id="main">
+            <div class="filter">
+                <!-- Ô nhập số nhà -->
+                <input type="text" name="soNha" id="soNha" placeholder="Hãy nhập số nhà">
+
+                <!-- Chọn quận -->
+                <select name="quan" id="quan">
+                    <option value="" disabled selected>Chọn quận</option>
+                    <option value="1">Quận 1</option>
+                    <option value="2">Quận 2</option>
+                    <option value="3">Quận 3</option>
+                    <option value="4">Quận 4</option>
+                    <option value="5">Quận 5</option>
+                    <option value="6">Quận 6</option>
+                    <option value="7">Quận 7</option>
+                    <option value="8">Quận 8</option>
+                    <option value="9">Quận 9</option>
+                    <option value="10">Quận 10</option>
+                </select>
+
+                <!-- Chọn thành phố -->
+                <select name="thanhPho" id="thanhPho">
+                    <option value="" disabled selected>Chọn thành phố</option>
+                    <option value="HCM">Hồ Chí Minh</option>
+                    <option value="HN">Hà Nội</option>
+                    <option value="DN">Đà Nẵng</option>
+                    <option value="CT">Cần Thơ</option>
+                    <option value="TTH">Thừa Thiên-Huế</option>
+                </select>
+
+                <!-- Chọn ngày -->
+                <div class="date">
+                    <label for="start">Từ ngày:</label>
+                    <input type="date" id="start" name="start" value="2023-11-24" min="2018-01-01" max="2023-12-31">
+                    <label for="end">Đến ngày:</label>
+                    <input type="date" id="end" name="end" value="2023-11-30" min="2018-01-01" max="2023-12-31">
+                </div>
+
+                <!-- Nút thống kê -->
+                <a onclick="move()" class="thongKe">Lọc</a>
+            </div>
+        </section>
+
+        <!-- Bảng hiển thị đơn hàng -->
+        <div class="mt-4">
+            <h4 class="text-center">Danh Sách Đơn Hàng</h4>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã Đơn Hàng</th>
+                        <th>Khách Hàng</th>
+                        <th>Địa Chỉ</th>
+                        <th>Ngày Mua</th>
+                        <th>Thành Tiền</th>
+                        <th>Trạng Thái</th>
+                        <th>Thay Đổi</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                    <tr>
+                        <td>007</td>
+                        <td>Nguyễn Văn An</td>
+                        <td>12 Trần Hưng Đạo, phường 1, quận Ba Đình, Hà Nội</td>
+                        <td>12/05/2023</td>
+                        <td>450.000 VNĐ</td>
+                        <td><select name="thanhPho" id="thanhToan">
+                            <option value="HCM">Chưa được xử lý</option>
+                            <option value="HN">Đã xác nhận</option>
+                            <option value="HN">Đã giao thành công</option>
+                            <option value="HN" >Đã hủy</option>
+                        </select></td>
+                        <td><button style="display: flex; align-items: center; justify-content: center; width: 70px; height: 40px; text-align: center; line-height: normal;" class="btn btn-primary btn-sm" onclick="luuDonHang()">Lưu</button></td>
+                        <td class="hanhdong"><a href="chitietdonhang.html">Xem chi tiết</a></td>
+                    </tr>
+                    <tr>
+                        <td>008</td>
+                        <td>Đặng Thị Hoa</td>
+                        <td>45 Hoàng Quốc Việt, phường 3, quận Cầu Giấy, Hà Nội</td>
+                        <td>01/09/2023</td>
+                        <td>780.000 VNĐ</td>
+                        <td><select name="thanhPho" id="thanhToan">
+                            <option value="HCM">Chưa được xử lý</option>
+                            <option value="HN">Đã xác nhận</option>
+                            <option value="HN"selected>Đã giao thành công</option>
+                            <option value="HN">Đã hủy</option>
+                        </select></td>
+                        <td><button style="display: flex; align-items: center; justify-content: center; width: 70px; height: 40px; text-align: center; line-height: normal;" class="btn btn-primary btn-sm" onclick="luuDonHang()">Lưu</button></td>
+                        <td class="hanhdong"><a href="chitietdonhang.html">Xem chi tiết</a></td>
+                    </tr>
+                    <tr>
+                        <td>009</td>
+                        <td>Trần Thanh Bình</td>
+                        <td>19 Phạm Văn Đồng, phường 5, quận Tây Hồ, Hà Nội</td>
+                        <td>05/11/2023</td>
+                        <td>1.050.000 VNĐ</td>
+                        <td><select name="thanhPho" id="thanhToan">
+                            <option value="HCM">Chưa được xử lý</option>
+                            <option value="HN">Đã xác nhận</option>
+                            <option value="HN">Đã giao thành công</option>
+                            <option value="HN" selected>Đã hủy</option>
+                        </select></td>
+                        <td><button style="display: flex; align-items: center; justify-content: center; width: 70px; height: 40px; text-align: center; line-height: normal;" class="btn btn-primary btn-sm" onclick="luuDonHang()">Lưu</button></td>
+                        <td class="hanhdong"><a href="chitietdonhang.html">Xem chi tiết</a></td>
+                    </tr>                                      
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item active"><a class="page-link" href="manageOrder.html">1</a></li>
+                <li class="page-item"><a class="page-link" href="manageOrder2.html">2</a></li>
+                <li class="page-item"><a class="page-link" href="manageOrder2.html">3</a></li>
+                <li class="page-item">
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
+        <!-- Footer Start -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Liên lạc qua </h2>
+                            <div class="contact-info">
+                                <p><i class="fa fa-map-marker"></i>273 Đ. An Dương Vương, Phường 3, Quận 5, Hồ Chí Minh</p>
+                                <p><i class="fa fa-envelope"></i>inoriyuzuriha1808@gmail.com</p>
+                                <p><i class="fa fa-phone"></i>0388919451</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Follow Us</h2>
+                            <div class="contact-info">
+                                <div class="social">
+                                    <a href=""><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/ry.order1011/?ref=embed_page"><i class="fab fa-facebook-f"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                    <a href=""><i class="fab fa-instagram"></i></a>
+                                    <a href=""><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Company Info</h2>
+                            <ul>
+                                <li><a href="https://www.facebook.com/ry.order1011/?ref=embed_page">About Us</a></li>
+                                <li><a href="https://ryorder.vn/pages/chinh-sach-mua-hang-tai-ry-order">Chính sách mua hàng</a></li>
+                                <li><a href="https://ryorder.vn/pages/dieu-khoan-dich-vu">Điều khoản dịch vụ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget">
+                            <h2>Purchase Info</h2>
+                            <ul>
+                                <li><a href="https://ryorder.vn/pages/chinh-sach-ho-tro-khach-hang-tai-ry-order">Pyament Policy</a></li>
+                                <li><a href="https://ryorder.vn/pages/van-de-van-chuyen">Vấn đề vận chuyển</a></li>
+                                <li><a href="https://ryorder.vn/pages/tam-su-voi-khach-hang">Return Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+        
+        <!-- Footer Bottom Start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 copyright">
+                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+                    </div>
+
+                    <div class="col-md-6 template-by">
+                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom End --> 
+        <script>
+            function move() {
+                var soNha = document.getElementById("soNha").value.trim(); // Lấy giá trị ô số nhà và loại bỏ khoảng trắng thừa
+                    window.location.href = 'manageOrder.html'; // Chuyển đến trang thống kê
+            }
+            function luuDonHang() {
+            alert("Đã lưu đơn hàng thành công !");
+        }
+        </script>
+</body>
+</html>
