@@ -330,9 +330,11 @@
         }
 
         function deleteProduct(index) {
-            products.splice(index, 1);
-            renderProducts();
-        }
+    if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+        products.splice(index, 1);
+        renderProducts();
+    }
+}
 
         document.getElementById('productForm').addEventListener('submit', function (e) {
             e.preventDefault();
@@ -373,5 +375,6 @@
         // Hiển thị sản phẩm mẫu khi tải trang
         renderProducts();
     </script>
+    
 </body>
 </html>
